@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Cash - Competitive Coding Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <!-- Logo Animation -->
+    <div class="logo-animation">
+        <div class="logo-container">
+            <div class="logo">
+                <span class="logo-icon"><i class="fas fa-code"></i></span>
+                Code Cash
+            </div>
+            <p class="tagline">Compete. Code. Win.</p>
+        </div>
+    </div>
+
+    <!-- Exit Intent Modal -->
+    <div class="exit-intent-modal" id="exit-intent-modal">
+        <h2>Wait! Don't Go Yet!</h2>
+        <p>Code Cash is waiting for you! There are new challenges available with bigger rewards. Stay and improve your coding skills while earning cash prizes!</p>
+        <div class="exit-intent-buttons">
+            <button class="btn" id="stay-button">Stay on Code Cash</button>
+            <button class="btn btn-secondary" id="leave-button">I'll Come Back Later</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="header-logo">
+                <i class="fas fa-code"></i>
+                <span>Code Cash</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link" data-page="home"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="challenges"><i class="fas fa-trophy"></i> Challenges</a></li>
+                    <li><a href="#" class="nav-link" data-page="leaderboard"><i class="fas fa-chart-line"></i> Leaderboard</a></li>
+                    <li><a href="#" class="nav-link" data-page="messages"><i class="fas fa-envelope"></i> Messages <span id="navBadge" class="badge" style="display:none">0</span></a></li>
+                    <li><a href="#" class="nav-link" data-page="history"><i class="fas fa-history"></i> History</a></li>
+                    <li><a href="#" class="nav-link" data-page="referral"><i class="fas fa-gift"></i> Referral</a></li>
+                </ul>
+            </nav>
+            <div class="user-info">
+                <div class="user-avatar" id="user-avatar">G</div>
+                <span id="user-name">Guest</span>
+                <span class="wallet-balance" id="wallet-balance">$0</span>
+                <button id="sidebar-toggle" style="background: none; border: none; color: white; margin-left: 1rem; cursor: pointer;">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Menu</h3>
+            <button class="close-sidebar" id="close-sidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#" class="nav-link" data-page="profile"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="#" class="nav-link" data-page="wallet"><i class="fas fa-wallet"></i> Wallet</a></li>
+                <li><a href="#" class="nav-link" data-page="settings"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="#" class="nav-link" data-page="help"><i class="fas fa-question-circle"></i> Help</a></li>
+                <li><a href="#" id="logout-button"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Home Page -->
+            <div id="home-page" class="page-content">
+                <section class="hero fade-in">
+                    <h1>Challenge Your Coding Skills</h1>
+                    <p>Compete with programmers from around the world, improve your skills, and win cash prizes in real-time coding battles.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn" id="start-challenge">Start Challenge</a>
+                        <a href="#" class="btn btn-secondary">How It Works</a>
+                    </div>
+                </section>
+
+                <section class="features">
+                    <div class="feature-card fade-in">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Fast Matching</h3>
+                        <p>Find opponents of similar skill level based on your GitHub profile and coding history.</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <i class="fas fa-code"></i>
+                        <h3>Real-time Compiler</h3>
+                        <p>Code in our built-in IDE with syntax highlighting and live error checking.</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Win Rewards</h3>
+                        <p>Earn cash prizes and points for solving problems faster and more efficiently.</p>
+                    </div>
+                </section>
+
+                <h2 style="margin-bottom: 1.5rem;">Challenge Types</h2>
+                <section class="challenge-types">
+                    <div class="challenge-card fade-in">
+                        <div class="challenge-header">
+                            <h3>1v1 Duel</h3>
+                        </div>
+                        <div class="challenge-body">
+                            <p>Head-to-head competition against another coder.</p>
+                            <ul>
+                                <li><i class="fas fa-check"></i> 15 minute time limit</li>
+                                <li><i class="fas fa-check"></i> Medium difficulty</li>
+                                <li><i class="fas fa-check"></i> Winner takes 80% of pot</li>
+                            </ul>
+                            <a href="#" class="btn start-challenge-btn" style="width: 100%; text-align: center;">Start Duel</a>
+                        </div>
+                    </div>
+                    <div class="challenge-card fade-in">
+                        <div class="challenge-header">
+                            <h3>5 Player Battle</h3>
+                        </div>
+                        <div class="challenge-body">
+                            <p>Compete against 4 other programmers.</p>
+                            <ul>
+                                <li><i class="fas fa-check"></i> 30 minute time limit</li>
+                                <li><i class="fas fa-check"></i> Hard difficulty</li>
+                                <li><i class="fas fa-check"></i> Top 3 win prizes</li>
+                            </ul>
+                            <a href="#" class="btn start-challenge-btn" style="width: 100%; text-align: center;">Join Battle</a>
+                        </div>
+                    </div>
+                    <div class="challenge-card fade-in">
+                        <div class="challenge-header">
+                            <h3>Tournament</h3>
+                        </div>
+                        <div class="challenge-body">
+                            <p>Multi-round elimination tournament.</p>
+                            <ul>
+                                <li><i class="fas fa-check"></i> 60+ minutes</li>
+                                <li><i class="fas fa-check"></i> Various difficulties</li>
+                                <li><i class="fas fa-check"></i> Big prize pool</li>
+                            </ul>
+                            <a href="#" class="btn start-challenge-btn" style="width: 100%; text-align: center;">View Tournaments</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Level Selection Page -->
+            <div id="level-selection-page" class="page-content">
+                <div class="page-container">
+                    <h2>Select Difficulty Level</h2>
+                    <div class="level-options">
+                        <button class="btn level-btn" data-level="easy">Easy</button>
+                        <button class="btn level-btn" data-level="medium">Medium</button>
+                        <button class="btn level-btn" data-level="hard">Hard</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mode Selection Page -->
+            <div id="mode-selection-page" class="page-content">
+                <div class="page-container">
+                    <h2>Select Mode</h2>
+                    <div class="mode-options">
+                        <button class="btn mode-btn" data-mode="1vs1">1 vs 1</button>
+                        <button class="btn mode-btn" data-mode="room">Create Room</button>
+                    </div>
+                    <p class="bet-info">Bet Amount: $10 (Minimum)</p>
+                </div>
+            </div>
+
+            <!-- Placeholder Page -->
+            <div id="placeholder-page" class="page-content">
+                <div class="page-container">
+                    <h2>We are sorry for the inconvenience</h2>
+                    <p>We will have codes soon.</p>
+                </div>
+            </div>
+
+            <!-- Challenges Page -->
+            <div id="challenges-page" class="page-content" style="display: none;">
+                <div class="page-container">
+                    <h2>Available Challenges</h2>
+                    <p>Browse and join ongoing challenges.</p>
+                    <div class="challenge-types">
+                        <div class="challenge-card">
+                            <div class="challenge-header">
+                                <h3>Open Duel</h3>
+                            </div>
+                            <div class="challenge-body">
+                                <p>Open 1v1 duel for medium level.</p>
+                                <a href="#" class="btn" style="width: 100%; text-align: center;">Join</a>
+                            </div>
+                        </div>
+                        <div class="challenge-card">
+                            <div class="challenge-header">
+                                <h3>Group Battle</h3>
+                            </div>
+                            <div class="challenge-body">
+                                <p>5 player battle on hard difficulty.</p>
+                                <a href="#" class="btn" style="width: 100%; text-align: center;">Join</a>
+                            </div>
+                        </div>
+                        <div class="challenge-card">
+                            <div class="challenge-header">
+                                <h3>Weekly Tournament</h3>
+                            </div>
+                            <div class="challenge-body">
+                                <p>Multi-round tournament with big prizes.</p>
+                                <a href="#" class="btn" style="width: 100%; text-align: center;">Join</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leaderboard Page -->
+            <div id="leaderboard-page" class="page-content" style="display: none;">
+                <div class="page-container">
+                    <h2>Global Leaderboard</h2>
+                    <p>Top coders ranked by skill rating.</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>User</th>
+                                <th>Rating</th>
+                                <th>Wins</th>
+                                <th>Earnings</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><i class="fas fa-medal medal-gold"></i> 1</td>
+                                <td class="leaderboard-name">ProCoder</td>
+                                <td>2500</td>
+                                <td>50</td>
+                                <td>$5000</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-medal medal-silver"></i> 2</td>
+                                <td class="leaderboard-name">CodeMaster</td>
+                                <td>2400</td>
+                                <td>45</td>
+                                <td>$4500</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-medal medal-bronze"></i> 3</td>
+                                <td class="leaderboard-name">AlgoExpert</td>
+                                <td>2300</td>
+                                <td>40</td>
+                                <td>$4000</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>DebugKing</td>
+                                <td>2200</td>
+                                <td>35</td>
+                                <td>$3500</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>ScriptQueen</td>
+                                <td>2100</td>
+                                <td>30</td>
+                                <td>$3000</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>ByteWizard</td>
+                                <td>2000</td>
+                                <td>28</td>
+                                <td>$2800</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>CodeNinja</td>
+                                <td>1900</td>
+                                <td>25</td>
+                                <td>$2500</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>AlgoAce</td>
+                                <td>1800</td>
+                                <td>22</td>
+                                <td>$2200</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>DevDynamo</td>
+                                <td>1700</td>
+                                <td>20</td>
+                                <td>$2000</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>ScriptSage</td>
+                                <td>1600</td>
+                                <td>18</td>
+                                <td>$1800</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- History Page -->
+            <div id="history-page" class="page-content" style="display: none;">
+                <div class="page-container">
+                    <h2>Your Challenge History</h2>
+                    <p>Record of past challenges and results.</p>
+                    <ul class="history-list">
+                        <li>
+                            <strong>1v1 Duel vs UserX</strong> - Won - +50 points - $10
+                        </li>
+                        <li>
+                            <strong>5 Player Battle</strong> - 2nd Place - +30 points - $5
+                        </li>
+                        <li>
+                            <strong>Tournament Round 1</strong> - Lost - -10 points
+                        </li>
+                        <li>
+                            <strong>1v1 Duel vs UserY</strong> - Won - +50 points - $10
+                        </li>
+                        <li>
+                            <strong>5 Player Battle</strong> - 1st Place - +50 points - $15
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Referral Page -->
+            <div id="referral-page" class="page-content" style="display: none;">
+                <div class="page-container">
+                    <h2>Referral Program</h2>
+                    <p>Invite friends and earn rewards.</p>
+                    <div>
+                        <label>Your Referral Code:</label>
+                        <input type="text" value="CODECASH123" readonly style="width: 100%; padding: 0.8rem; margin-bottom: 1rem;">
+                    </div>
+                    <p>Share this code with friends. Earn $5 for each successful referral.</p>
+                    <h3>Your Referrals</h3>
+                    <ul>
+                        <li>UserA - Joined on 2023-10-01 - Reward: $5</li>
+                        <li>UserB - Joined on 2023-10-05 - Reward: $5</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Wallet Page -->
+            <div id="wallet-page" class="page-content" style="display: none;">
+                <div class="page-container">
+                    <h2>Your Wallet</h2>
+                    <p id="wallet-page-balance">Current Balance: $0</p>
+                    <h3>Transaction History</h3>
+                    <ul id="transaction-history">
+                        <!-- Transactions will be loaded here -->
+                    </ul>
+                    <button class="btn" id="add-funds-btn" style="margin-right: 1rem;">Add Funds</button>
+                    <button class="btn" id="withdraw-funds-btn">Withdraw Funds</button>
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div id="settings-page" class="page-content" style="display: none;">
+                <div class="page-container">
+                    <h2>Account Settings</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="email-notif">Email Notifications</label>
+                            <input type="checkbox" id="email-notif" checked>
+                        </div>
+                        <div class="form-group">
+                            <label for="theme">Theme</label>
+                            <select id="theme">
+                                <option>Light</option>
+                                <option>Dark</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="language">Preferred Language</label>
+                            <select id="language">
+                                <option>JavaScript</option>
+                                <option>Python</option>
+                                <option>Java</option>
+                                <option>C#</option>
+                            </select>
+                        </div>
+                        <button class="btn" type="submit">Save Settings</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Help Page -->
+            <div id="help-page" class="page-content" style="display: none;">
+                <div class="page-container">
+                    <h2>Help & FAQ</h2>
+                    <h3>How do I start a challenge?</h3>
+                    <p>Go to the Challenges page and select one to join.</p>
+                    <h3>How are ratings calculated?</h3>
+                    <p>Ratings are based on Elo system, updated after each challenge.</p>
+                    <h3>How to withdraw earnings?</h3>
+                    <p>Go to Wallet and click Withdraw. Minimum $10.</p>
+                    <a href="#" class="btn">Contact Support</a>
+                </div>
+            </div>
+
+            <!-- Profile Page -->
+            <div id="profile-page" class="page-content" style="display: none;">
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <div class="profile-avatar" id="profile-avatar">G</div>
+                        <div class="profile-info">
+                            <h2 id="profile-name">Guest User</h2>
+                            <p id="profile-email">guest@example.com</p>
+                            <p id="profile-github">GitHub: Not connected</p>
+                            <span class="level-badge" id="profile-level">Level 1 - Beginner</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-trophy"></i>
+                            <h3 id="profile-wins">0</h3>
+                            <p>Challenges Won</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-code"></i>
+                            <h3 id="profile-challenges">0</h3>
+                            <p>Total Challenges</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-coins"></i>
+                            <h3 id="profile-earnings">$0</h3>
+                            <p>Total Earnings</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-star"></i>
+                            <h3 id="profile-rating">1200</h3>
+                            <p>Skill Rating</p>
+                        </div>
+                    </div>
+
+                    <div class="github-section">
+                        <h3><i class="fab fa-github"></i> GitHub Integration</h3>
+                        <div id="github-status">
+                            <div class="github-connected" id="github-connected" style="display: none;">
+                                <i class="fas fa-check-circle"></i> Connected to GitHub
+                            </div>
+                            <button class="btn btn-github" id="connect-github">
+                                <i class="fab fa-github"></i> Connect GitHub Account
+                            </button>
+                        </div>
+
+                        <div id="github-repos" style="display: none; margin-top: 1.5rem;">
+                            <h4>Your Repositories</h4>
+                            <div class="github-repos" id="repos-container">
+                                <!-- GitHub repos will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compiler Page -->
+            <div id="compiler-page" class="page-content" style="display: none;">
+                <div class="compiler-container">
+                    <div class="compiler-header">
+                        <h2>Code Compiler</h2>
+                        <div>
+                            <span>Time remaining: </span>
+                            <span id="timer">15:00</span>
+                        </div>
+                    </div>
+
+                    <div class="editor-actions">
+                        <select class="language-selector" id="language-selector">
+                            <option value="javascript">JavaScript</option>
+                            <option value="python">Python</option>
+                            <option value="java">Java</option>
+                            <option value="csharp">C#</option>
+                        </select>
+                        <button class="btn" id="run-code">Run Code</button>
+                        <button class="btn" id="submit-code">Submit Solution</button>
+                    </div>
+
+                    <textarea class="code-editor" id="code-editor" placeholder="Write your code here...">function solveChallenge(input) {
+    // Your code here
+    return input;
+}</textarea>
+
+                    <div class="test-cases">
+                        <h3>Test Cases</h3>
+                        <div class="test-case">
+                            <h4>Test Case 1</h4>
+                            <pre>Input: [1, 2, 3, 4, 5]</pre>
+                            <pre>Expected Output: 15</pre>
+                            <div class="test-result" id="test-result-1">Pending</div>
+                        </div>
+                        <div class="test-case">
+                            <h4>Test Case 2</h4>
+                            <pre>Input: [10, 20, 30]</pre>
+                            <pre>Expected Output: 60</pre>
+                            <div class="test-result" id="test-result-2">Pending</div>
+                        </div>
+                        <div class="test-case">
+                            <h4>Test Case 3</h4>
+                            <pre>Input: [-1, 0, 1]</pre>
+                            <pre>Expected Output: 0</pre>
+                            <div class="test-result" id="test-result-3">Pending</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Messages Page -->
+            <div id="messages-page" class="page-content" style="display: none;">
+                <section class="card" aria-label="Messages">
+                    <div class="card-header">
+                        <h2 class="row">
+                            <span>Inbox</span>
+                            <span class="badge" id="inboxCount">0</span>
+                        </h2>
+                        <div class="row muted" style="font-size:13px">
+                            <span>Innovative, emoji-rich messages</span>
+                        </div>
+                        <div class="nav-actions">
+                            <button id="clearUnread" class="btn" title="Mark all as read">Mark read</button>
+                            <button id="seedMessages" class="btn btn-primary">Seed fun</button>
+                        </div>
+                    </div>
+
+                    <div id="messages" class="messages" role="log" aria-live="polite" aria-relevant="additions"></div>
+
+                    <div class="quick-emojis" aria-hidden="false">
+                        <button class="q-emoji" data-insert="🔥" title="Fire">🔥</button>
+                        <button class="q-emoji" data-insert="💡" title="Idea">💡</button>
+                        <button class="q-emoji" data-insert="🎯" title="Goal">🎯</button>
+                        <button class="q-emoji" data-insert="🚀" title="Rocket">🚀</button>
+                        <button class="q-emoji" data-insert="🏆" title="Trophy">🏆</button>
+                        <button class="q-emoji" data-insert="💥" title="Boom">💥</button>
+                        <button class="q-emoji" data-insert="🧠" title="Brain">🧠</button>
+                        <button class="q-emoji" data-insert="⏱" title="Timer">⏱</button>
+                    </div>
+
+                    <div class="composer">
+                        <div class="field" role="group" aria-label="Message composer">
+                            <span aria-hidden="true">💬</span>
+                            <input id="composerInput" type="text" placeholder="Drop a clever message… e.g. '🚀 1v1 me on Hard mode?'" />
+                        </div>
+                        <button id="sendBtn" class="btn btn-primary">Send</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Code Cash</h3>
+                <p>The premier platform for competitive programming challenges and cash prizes. Join thousands of developers worldwide in exciting coding battles.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Platform</h3>
+                <ul>
+                    <li><a href="#" class="nav-link" data-page="home"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="challenges"><i class="fas fa-trophy"></i> Challenges</a></li>
+                    <li><a href="#" class="nav-link" data-page="leaderboard"><i class="fas fa-chart-line"></i> Leaderboard</a></li>
+                    <li><a href="#" class="nav-link" data-page="history"><i class="fas fa-history"></i> History</a></li>
+                    <li><a href="#" class="nav-link" data-page="referral"><i class="fas fa-gift"></i> Referral</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                    <li><a href="#"><i class="fas fa-book"></i> Documentation</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                    <li><a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                    <li><a href="#"><i class="fas fa-file-alt"></i> Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> Our Mission</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Team</a></li>
+                    <li><a href="#"><i class="fas fa-briefcase"></i> Careers</a></li>
+                    <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+                    <li><a href="#"><i class="fas fa-handshake"></i> Partners</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Code Cash Inc. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--accent);"></i> for coders.</p>
+        </div>
+    </footer>
+
+    <!-- Auth Forms -->
+    <div class="auth-container" id="login-form">
+        <div class="auth-form">
+            <h2>Login to Code Cash</h2>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <div class="form-group" style="display: flex; align-items: center; gap: 8px; width: fit-content; margin: 10px 0;">
+                <input type="checkbox" id="remember-me">
+                <label for="remember-me" style="margin: 0; white-space: nowrap;">Remember me</label>
+            </div>
+
+
+
+            <button class="btn" id="login-button" style="width: 100%;">Login</button>
+            <div class="auth-form-footer">
+                <p>Don't have an account? <a href="#" id="show-signup">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="auth-container" id="signup-form">
+        <div class="auth-form">
+            <h2>Create an Account</h2>
+            <div class="form-group">
+                <label for="signup-name">Full Name</label>
+                <input type="text" id="signup-name" placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" placeholder="Create a password">
+            </div>
+            <div class="form-group">
+                <label for="github-username">GitHub Username (optional)</label>
+                <input type="text" id="github-username" placeholder="Enter your GitHub username">
+            </div>
+            <button class="btn" id="signup-button" style="width: 100%;">Sign Up</button>
+            <div class="auth-form-footer">
+                <p>Already have an account? <a href="#" id="show-login">Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wallet Add Funds Modal -->
+    <div class="wallet-modal" id="add-funds-modal">
+        <div class="wallet-form">
+            <h2>Add Funds</h2>
+            <div class="form-group">
+                <label for="add-amount">Amount ($)</label>
+                <input type="number" id="add-amount" placeholder="Enter amount">
+            </div>
+            <button class="btn" id="confirm-add" style="width: 100%;">Add</button>
+            <button class="btn btn-secondary" id="cancel-add" style="width: 100%; margin-top: 1rem;">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Wallet Withdraw Funds Modal -->
+    <div class="wallet-modal" id="withdraw-funds-modal">
+        <div class="wallet-form">
+            <h2>Withdraw Funds</h2>
+            <div class="form-group">
+                <label for="withdraw-amount">Amount ($)</label>
+                <input type="number" id="withdraw-amount" placeholder="Enter amount">
+            </div>
+            <button class="btn" id="confirm-withdraw" style="width: 100%;">Withdraw</button>
+            <button class="btn btn-secondary" id="cancel-withdraw" style="width: 100%; margin-top: 1rem;">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Feedback Section -->
+    <button class="feedback-toggle" id="feedback-toggle">💬</button>
+    <div class="feedback-container" id="feedback-container">
+        <div class="feedback-header">
+            <h3>Feedbacks</h3>
+            <button class="close-sidebar" id="close-feedback">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="feedback-list" id="feedback-list">
+            <!-- Feedbacks will be loaded here -->
+        </div>
+        <div class="feedback-composer">
+            <input type="text" id="feedback-input" placeholder="Add your feedback...">
+            <button class="btn" id="send-feedback">Send</button>
+        </div>
+    </div>
+
+    <!-- Emoji Picker (re-usable) -->
+    <div id="emojiPicker" class="emoji-picker" role="dialog" aria-modal="false" aria-label="Add reaction">
+        <div class="emoji-grid" id="emojiGrid"></div>
+    </div>
+
+    <script src="main.js"></script>
+    
+</body>
+</html>
